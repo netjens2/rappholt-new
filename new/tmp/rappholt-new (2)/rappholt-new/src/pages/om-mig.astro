@@ -1,0 +1,370 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Om Mig | Bröllopsvideograf Jens Rappholt | Malmö & Skåne">
+  <Nav />
+  
+  <main class="about-page">
+    <section class="page-hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-image">
+            <img src="/portrait.png" alt="Jens Rappholt – bröllopsvideograf i Skåne" />
+          </div>
+          <div class="hero-content">
+            <p class="section-label">Om mig</p>
+            <h1 class="page-title">Jens Rappholt</h1>
+            <p class="page-subtitle">Bröllopsvideograf i Malmö & Skåne</p>
+            
+            <div class="intro-text">
+              <p>
+                Jag har jobbat med bild i över 15 år. Började som modefotograf, jobbade sedan som fastighetsfotograf åt mäklare, och gjorde företagsporträtt och produktfoto. Sålde även stockfoton via Shutterstock.
+              </p>
+              <p>
+                Men till slut fann jag mer utmaning i att filma än att fotografera, så jag valde filmspåret. Rörlig bild ger så mycket mer – och redigeringen är en kreativ del av processen som jag älskar.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="philosophy">
+      <div class="container">
+        <div class="philosophy-grid">
+          <div class="philosophy-item">
+            <h3>Från foto till film</h3>
+            <p>Efter 15 år med stillbilder ville jag berätta mer. En bild fångar ett ögonblick – film fångar känslan, rösterna, musiken. Det är en helt annan upplevelse.</p>
+          </div>
+          <div class="philosophy-item">
+            <h3>Tidlös stil</h3>
+            <p>Inga trender som känns daterade om fem år. Jag skapar filmer med klassisk färggradering och ett lugnt berättartempo som håller över tid.</p>
+          </div>
+          <div class="philosophy-item">
+            <h3>Snabb leverans</h3>
+            <p>Medan andra videografer levererar efter 8-12 veckor får ni er film inom 5 dagar. Jag vet hur det känns att vänta.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-section">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat">
+            <span class="stat-value">5</span>
+            <span class="stat-label">dagars leverans</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">6K</span>
+            <span class="stat-label">RAW kvalitet</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">15+</span>
+            <span class="stat-label">år med kamera</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="equipment">
+      <div class="container">
+        <div class="equipment-grid">
+          <div class="equipment-content">
+            <p class="section-label">Utrustning</p>
+            <h2>Byggd för film, inte foto</h2>
+            <p class="equipment-intro">
+              Jag filmar med utrustning byggd för rörlig bild, inte stillbilder. Det är skillnaden mellan en videograf och en fotograf med kamera.
+            </p>
+            
+            <div class="specs-list">
+              <div class="spec-item">
+                <strong>Kamera</strong>
+                <span>Panasonic S1H – fullformat cinema-kamera</span>
+              </div>
+              <div class="spec-item">
+                <strong>Stabilisering</strong>
+                <span>DJI RS3 Pro i Tilta-rigg + Easyrig Vario 5</span>
+              </div>
+              <div class="spec-item">
+                <strong>Inspelning</strong>
+                <span>Blackmagic Video Assist 12G – 6K RAW</span>
+              </div>
+              <div class="spec-item">
+                <strong>Fokus</strong>
+                <span>DJI LiDAR</span>
+              </div>
+              <div class="spec-item">
+                <strong>Ljud</strong>
+                <span>Mikrofon på rigg + 2 trådlösa mikrofoner i mixen</span>
+              </div>
+            </div>
+          </div>
+          <div class="equipment-image">
+            <img src="/Rig.png" alt="Professionell filmrigg" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <h2>Redo att prata om ert bröllop?</h2>
+          <p>Boka ett gratis 15-minuters samtal där vi diskuterar era önskemål och hur jag kan hjälpa er.</p>
+          <div class="cta-buttons">
+            <a href="/kontakt" class="btn btn-primary">Boka samtal</a>
+            <a href="/portfolio" class="btn btn-secondary">Se portfolio</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .about-page {
+    padding-top: 100px;
+  }
+
+  .page-hero {
+    padding: 80px 0;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .hero-image img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .section-label {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 16px;
+  }
+
+  .page-title {
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+
+  .page-subtitle {
+    font-size: 20px;
+    color: var(--color-text-muted);
+    margin-bottom: 32px;
+  }
+
+  .intro-text p {
+    font-size: 18px;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .philosophy {
+    padding: 80px 0;
+    background: var(--color-bg-elevated);
+  }
+
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+  }
+
+  .philosophy-item h3 {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .philosophy-item p {
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  .stats-section {
+    padding: 80px 0;
+  }
+
+  .stats-grid {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-value {
+    font-family: var(--font-display);
+    font-size: 56px;
+    font-weight: 500;
+    color: var(--color-accent);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .equipment {
+    padding: 80px 0;
+    background: var(--color-bg-elevated);
+  }
+
+  .equipment-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .equipment h2 {
+    font-size: clamp(28px, 4vw, 40px);
+    margin-bottom: 20px;
+  }
+
+  .equipment-intro {
+    font-size: 18px;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+
+  .specs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .spec-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 15px;
+  }
+
+  .spec-item strong {
+    color: var(--color-text);
+  }
+
+  .spec-item span {
+    color: var(--color-text-muted);
+    text-align: right;
+  }
+
+  .equipment-image img {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .cta-section {
+    padding: 80px 0;
+  }
+
+  .cta-box {
+    text-align: center;
+    padding: 60px;
+    background: var(--color-bg-elevated);
+    border-radius: 8px;
+  }
+
+  .cta-box h2 {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .cta-box p {
+    color: var(--color-text-muted);
+    margin-bottom: 24px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 16px 32px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--color-text);
+    color: var(--color-bg);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 1024px) {
+    .hero-grid,
+    .equipment-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    .hero-image {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .philosophy-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .stats-grid {
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .cta-box {
+      padding: 40px 24px;
+    }
+
+    .spec-item {
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .spec-item span {
+      text-align: left;
+    }
+  }
+</style>

@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rappholt Photo - Preview</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-card: #1a1a1a;
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0a0;
+      --text-muted: #666666;
+      --accent: #d4af37;
+      --border: #2a2a2a;
+    }
+
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 0;
+      background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.8) 50%, transparent 100%);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 500; }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover { color: var(--text-primary); }
+
+    .nav-contact {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .nav-contact a {
+      color: var(--text-primary);
+      margin-left: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-contact { display: none; }
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1a1a2e 0%, #0a0a0a 100%);
+    }
+
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, var(--bg-primary) 0%, transparent 50%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      padding-bottom: 80px;
+    }
+
+    .hero-title {
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: 400;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin-bottom: 32px;
+      font-weight: 300;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      border: 1px solid var(--text-muted);
+      padding: 16px 32px;
+      transition: all 0.3s ease;
+    }
+
+    .hero-cta:hover {
+      background: var(--text-primary);
+      color: var(--bg-primary);
+      border-color: var(--text-primary);
+    }
+
+    /* Sections */
+    .section { padding: 120px 0; }
+    .section-header { margin-bottom: 60px; }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 400;
+    }
+
+    /* Video Grid */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 24px;
+    }
+
+    .video-card {
+      position: relative;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: var(--bg-card);
+      cursor: pointer;
+    }
+
+    .video-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease, opacity 0.3s ease;
+    }
+
+    .video-card:hover img {
+      transform: scale(1.05);
+      opacity: 0.7;
+    }
+
+    .video-card-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .video-card:hover .video-card-overlay { opacity: 1; }
+
+    .video-card-title {
+      font-size: 18px;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 4px;
+    }
+
+    .video-card-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px;
+      height: 64px;
+      border: 2px solid white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .video-card:hover .play-icon { opacity: 1; }
+
+    .play-icon svg {
+      width: 24px;
+      height: 24px;
+      margin-left: 4px;
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    .about-image {
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      background: var(--bg-card);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(20%);
+    }
+
+    .about-content h2 {
+      font-size: clamp(32px, 4vw, 42px);
+      margin-bottom: 24px;
+    }
+
+    .about-content p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .about-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 40px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat { text-align: left; }
+
+    .stat-value {
+      font-size: 32px;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Packages */
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .packages-grid { grid-template-columns: 1fr; }
+    }
+
+    .package-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      padding: 40px;
+      transition: border-color 0.3s ease;
+    }
+
+    .package-card:hover { border-color: var(--text-muted); }
+    .package-card.featured { border-color: var(--accent); }
+
+    .package-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .package-title {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .package-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .package-features { list-style: none; }
+
+    .package-features li {
+      font-size: 14px;
+      color: var(--text-secondary);
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .package-features li:last-child { border-bottom: none; }
+    .check { color: var(--accent); }
+
+    /* Contact */
+    .contact-section { background: var(--bg-secondary); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    .contact-info h2 {
+      font-size: clamp(32px, 4vw, 42px);
+      margin-bottom: 24px;
+    }
+
+    .contact-info p {
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      line-height: 1.8;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: var(--text-secondary);
+      font-size: 15px;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      padding: 16px;
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 15px;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--text-muted);
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      background: var(--text-primary);
+      color: var(--bg-primary);
+      border: none;
+      padding: 18px 32px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+
+    .submit-btn:hover { opacity: 0.9; }
+
+    /* Footer */
+    .footer {
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .footer-inner {
+        flex-direction: column;
+        gap: 24px;
+        text-align: center;
+      }
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-social a {
+      color: var(--text-muted);
+      transition: color 0.3s ease;
+      font-size: 14px;
+    }
+
+    .footer-social a:hover { color: var(--text-primary); }
+
+    /* FAQ */
+    .faq-list { max-width: 700px; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 24px 0;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-primary);
+      font-family: inherit;
+    }
+
+    .faq-question:hover { color: var(--text-secondary); }
+
+    .faq-answer {
+      padding-bottom: 24px;
+      color: var(--text-secondary);
+      font-size: 15px;
+      line-height: 1.8;
+      display: none;
+    }
+
+    .faq-item.open .faq-answer { display: block; }
+
+    .faq-icon {
+      font-size: 24px;
+      font-weight: 300;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo">Rappholt Photo</a>
+      <ul class="nav-links">
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#om-mig">Om Mig</a></li>
+        <li><a href="#paket">Paket</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+      <div class="nav-contact">
+        <a href="tel:+46708588963">070-858 89 63</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="hero-video.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <h1 class="hero-title">Jens Rappholt</h1>
+      <p class="hero-subtitle">
+        Bröllopsvideograf i Malmö & Skåne. Tidlösa filmer i 6K RAW. 
+        Leverans på 5 dagar.
+      </p>
+      <a href="#portfolio" class="hero-cta">
+        Se mitt arbete →
+      </a>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section id="portfolio" class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Portfolio</p>
+        <h2 class="section-title">Bröllopsvideor från Skåne</h2>
+      </div>
+      
+      <div class="video-grid">
+        <a href="https://www.youtube.com/watch?v=7_cPxa_VrUA" target="_blank" class="video-card">
+          <img src="https://img.youtube.com/vi/7_cPxa_VrUA/maxresdefault.jpg" alt="Showreel 2025" />
+          <div class="video-card-overlay">
+            <span class="video-card-title">Showreel 2025</span>
+            <span class="video-card-meta">Highlight Reel</span>
+          </div>
+          <div class="play-icon">
+            <svg viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=6XhBUA2cDzM" target="_blank" class="video-card">
+          <img src="https://img.youtube.com/vi/6XhBUA2cDzM/maxresdefault.jpg" alt="Tapomita & Maximillian" />
+          <div class="video-card-overlay">
+            <span class="video-card-title">Tapomita & Maximillian</span>
+            <span class="video-card-meta">Bröllopsfilm</span>
+          </div>
+          <div class="play-icon">
+            <svg viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=gZQ1a2vhm-o" target="_blank" class="video-card">
+          <img src="https://img.youtube.com/vi/gZQ1a2vhm-o/maxresdefault.jpg" alt="Johanna 2025" />
+          <div class="video-card-overlay">
+            <span class="video-card-title">Johanna</span>
+            <span class="video-card-meta">Bröllopsfilm 2025</span>
+          </div>
+          <div class="play-icon">
+            <svg viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="om-mig" class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=750&fit=crop" alt="Jens Rappholt" />
+        </div>
+        <div class="about-content">
+          <p class="section-label">Om Mig</p>
+          <h2>Jens Rappholt</h2>
+          <p>
+            Jag heter Jens och arbetar som bröllopsvideograf i Skåne. Basen är i Malmö 
+            men jag filmar över hela regionen – Österlen, Helsingborg, Lund och vidare 
+            ut i Europa.
+          </p>
+          <p>
+            Jag lägger fokus på berättande, känsla och tidlös bildstil. Du får en film 
+            som känns personlig, levereras i tid och är framtidssäker tack vare 
+            inspelning i 6K RAW.
+          </p>
+          
+          <div class="about-stats">
+            <div class="stat">
+              <div class="stat-value">5</div>
+              <div class="stat-label">Dagars leverans</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">6K</div>
+              <div class="stat-label">RAW Kvalitet</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">135k+</div>
+              <div class="stat-label">SEK utrustning</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Packages -->
+  <section id="paket" class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Paket</p>
+        <h2 class="section-title">Tre sätt att dokumentera ert bröllop</h2>
+      </div>
+
+      <div class="packages-grid">
+        <div class="package-card">
+          <h3 class="package-title">Kort dag</h3>
+          <p class="package-desc">Perfekt för mindre vigslar</p>
+          <ul class="package-features">
+            <li><span class="check">✓</span> 4–6 minuters highlightfilm</li>
+            <li><span class="check">✓</span> Halvdag (4-5 timmar)</li>
+            <li><span class="check">✓</span> Leverans på 5 dagar</li>
+            <li><span class="check">✓</span> 6K RAW-inspelning</li>
+          </ul>
+        </div>
+
+        <div class="package-card featured">
+          <p class="package-label">Populärast</p>
+          <h3 class="package-title">Heldag</h3>
+          <p class="package-desc">Från förberedelser till sista dansen</p>
+          <ul class="package-features">
+            <li><span class="check">✓</span> Highlightfilm + full vigsel</li>
+            <li><span class="check">✓</span> 10-12 timmar filmning</li>
+            <li><span class="check">✓</span> Leverans på 5 dagar</li>
+            <li><span class="check">✓</span> Drönare inkluderat</li>
+            <li><span class="check">✓</span> 6K RAW + färggradering</li>
+          </ul>
+        </div>
+
+        <div class="package-card">
+          <h3 class="package-title">Destination</h3>
+          <p class="package-desc">Bröllop utomlands eller i Sverige</p>
+          <ul class="package-features">
+            <li><span class="check">✓</span> Flexibel planering</li>
+            <li><span class="check">✓</span> Anpassat efter era önskemål</li>
+            <li><span class="check">✓</span> Heldag eller flera dagar</li>
+            <li><span class="check">✓</span> All utrustning medföljer</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Vanliga frågor</p>
+        <h2 class="section-title">FAQ</h2>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item open">
+          <button class="faq-question">
+            Vad kostar det ungefär?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Priserna varierar beroende på vilken dag, plats och hur många timmar ni vill ha. 
+            De flesta par hamnar mellan 14 000 - 25 000 kr för en heldag.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Varför ska vi välja dig?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Jag levererar på 5 dagar (de flesta tar 8-12 veckor), använder samma utrustning som 
+            Netflix-produktioner, och har filmisk stil som håller i generationer.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Hur bokar vi dig?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Fyll i kontaktformuläret eller mejla direkt. Vi bokar ett kort samtal där vi pratar 
+            om ert bröllop. Sedan skickar jag ett prisförslag.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="kontakt" class="section contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p class="section-label">Kontakt</p>
+          <h2>Låt oss prata om ert bröllop</h2>
+          <p>
+            Boka ett gratis 15-minuters samtal där vi pratar om ert bröllop, era önskemål 
+            och budget.
+          </p>
+          
+          <div class="contact-details">
+            <div class="contact-item">📞 070-858 89 63</div>
+            <div class="contact-item">📧 jensphoto@gmail.com</div>
+            <div class="contact-item">📷 @rappholtphoto</div>
+            <div class="contact-item">📍 Malmö, Skåne</div>
+          </div>
+        </div>
+
+        <form class="contact-form">
+          <div class="form-group">
+            <label>Era namn</label>
+            <input type="text" required />
+          </div>
+          <div class="form-group">
+            <label>E-post</label>
+            <input type="email" required />
+          </div>
+          <div class="form-group">
+            <label>Bröllopsdatum</label>
+            <input type="text" placeholder="Eller ungefär när" />
+          </div>
+          <div class="form-group">
+            <label>Meddelande</label>
+            <textarea placeholder="Berätta lite om ert bröllop..."></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Skicka förfrågan</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-copy">© 2025 Rappholt Photo. Alla rättigheter förbehållna.</p>
+      <div class="footer-social">
+        <a href="#">Instagram</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.parentElement.classList.toggle('open');
+      });
+    });
+  </script>
+
+</body>
+</html>

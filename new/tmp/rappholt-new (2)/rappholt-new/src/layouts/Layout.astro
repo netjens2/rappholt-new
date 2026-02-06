@@ -1,0 +1,117 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Professionell bröllopsvideograf i Malmö & Skåne. Tidlösa bröllopsvideor i 6K RAW kvalitet. Leverans på 5 dagar." } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <title>{title}</title>
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4SYR6HR5RH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4SYR6HR5RH');
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Rappholt Photo",
+    "description": "Professionell bröllopsvideograf i Malmö och Skåne. Leverans på 5 dagar.",
+    "url": "https://www.rappholtphoto.se",
+    "telephone": "+46708588963",
+    "email": "jensphoto@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Malmö",
+      "addressRegion": "Skåne",
+      "addressCountry": "SE"
+    },
+    "areaServed": ["Malmö", "Skåne", "Österlen", "Helsingborg", "Lund"],
+    "priceRange": "14000-25000 SEK"
+  }
+  </script>
+</head>
+<body>
+  <slot />
+
+  <style is:global>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --color-bg: #0a0a0a;
+      --color-bg-elevated: #141414;
+      --color-bg-hover: #1a1a1a;
+      --color-text: #ffffff;
+      --color-text-muted: #888888;
+      --color-text-subtle: #555555;
+      --color-accent: #c9a962;
+      --color-border: #222222;
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img, video {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px;
+      }
+    }
+  </style>
+</body>
+</html>

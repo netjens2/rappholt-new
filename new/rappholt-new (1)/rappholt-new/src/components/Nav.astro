@@ -1,0 +1,121 @@
+---
+const navItems = [
+  { href: "/portfolio", label: "Portfolio" },
+  { href: "/paket", label: "Paket" },
+  { href: "/om-mig", label: "Om Mig" },
+  { href: "/kontakt", label: "Kontakt" },
+];
+---
+
+<header class="header">
+  <nav class="nav container">
+    <a href="/" class="logo">
+      <img src="/logo.png" alt="Rappholt Photo" class="logo-img" />
+    </a>
+    
+    <ul class="nav-links">
+      {navItems.map((item) => (
+        <li>
+          <a href={item.href} class="nav-link">{item.label}</a>
+        </li>
+      ))}
+    </ul>
+
+    <a href="tel:+46708588963" class="nav-cta">
+      Boka samtal
+    </a>
+
+    <button class="mobile-menu-btn" aria-label="Meny">
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 20px 0;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0) 100%);
+    transition: background 0.3s ease;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo-img {
+    height: 40px;
+    width: auto;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-link {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    transition: color 0.2s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--color-text);
+  }
+
+  .nav-cta {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 12px 24px;
+    background: var(--color-text);
+    color: var(--color-bg);
+    border-radius: 4px;
+    transition: opacity 0.2s ease;
+  }
+
+  .nav-cta:hover {
+    opacity: 0.9;
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .mobile-menu-btn span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-text);
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+
+    .nav-cta {
+      display: none;
+    }
+
+    .mobile-menu-btn {
+      display: flex;
+    }
+  }
+</style>

@@ -1,0 +1,318 @@
+---
+const packages = [
+  {
+    name: "Halvdag",
+    description: "4-5 timmar på plats",
+    features: [
+      "Perfekt för vigsel + mingel",
+      "En färdig film (ca 4-6 min)",
+      "Drönare (om vädret tillåter)",
+      "Filmat i 6K RAW",
+      "Leverans inom 5 dagar"
+    ]
+  },
+  {
+    name: "Heldag",
+    description: "10-12 timmar på plats",
+    features: [
+      "Från förberedelser till fest",
+      "En färdig film (ca 4-6 min)",
+      "Drönare (om vädret tillåter)",
+      "Filmat i 6K RAW",
+      "Leverans inom 5 dagar"
+    ],
+    featured: true
+  },
+  {
+    name: "Destination",
+    description: "Bröllop på annan ort",
+    features: [
+      "Sverige eller utomlands",
+      "En färdig film (ca 4-6 min)",
+      "Drönare (om vädret tillåter)",
+      "Filmat i 6K RAW",
+      "Resa & boende tillkommer"
+    ]
+  }
+];
+---
+
+<section id="paket" class="packages">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Paket</p>
+      <h2 class="section-title">Tre sätt att dokumentera ert bröllop</h2>
+      <p class="section-description">
+        Varje bröllop är unikt. Därför skräddarsyr jag alltid paketen efter era önskemål, datum och budget.
+      </p>
+    </div>
+
+    <div class="packages-grid">
+      {packages.map((pkg) => (
+        <div class={`package-card ${pkg.featured ? 'featured' : ''}`}>
+          {pkg.featured && <span class="featured-badge">Populärast</span>}
+          <h3 class="package-name">{pkg.name}</h3>
+          <p class="package-description">{pkg.description}</p>
+          <ul class="package-features">
+            {pkg.features.map((feature) => (
+              <li>{feature}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <div class="packages-cta">
+      <div class="cta-box">
+        <h3>Få ett prisförslag inom 24 timmar</h3>
+        <p>Boka ett gratis 15-minuters samtal där vi pratar om ert bröllop, era önskemål och budget.</p>
+        <div class="cta-buttons">
+          <a href="#kontakt" class="btn btn-primary">Boka gratis samtal</a>
+          <a href="mailto:jensphoto@gmail.com" class="btn btn-secondary">jensphoto@gmail.com</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="included">
+      <h4 class="included-title">Vill ni ha mer?</h4>
+      <p class="included-description">Längre film, separata tal, full vigsel – det går att lösa. Vi diskuterar vad som passar er.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .packages {
+    padding: 120px 0;
+    background: var(--color-bg-elevated);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .section-label {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+
+  .section-description {
+    font-size: 18px;
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .packages-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 60px;
+  }
+
+  .package-card {
+    position: relative;
+    padding: 40px 32px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+  }
+
+  .package-card:hover {
+    border-color: var(--color-text-subtle);
+  }
+
+  .package-card.featured {
+    border-color: var(--color-accent);
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 16px;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 20px;
+  }
+
+  .package-name {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .package-description {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    margin-bottom: 24px;
+  }
+
+  .package-features {
+    list-style: none;
+  }
+
+  .package-features li {
+    position: relative;
+    padding-left: 24px;
+    padding-bottom: 12px;
+    font-size: 15px;
+    color: var(--color-text-muted);
+  }
+
+  .package-features li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+  }
+
+  .packages-cta {
+    margin-bottom: 80px;
+  }
+
+  .included {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .included-title {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .included-description {
+    color: var(--color-text-muted);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .cta-box {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 48px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .cta-box h3 {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .cta-box p {
+    color: var(--color-text-muted);
+    margin-bottom: 24px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 16px 32px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--color-text);
+    color: var(--color-bg);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+  }
+
+  .included-title {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--color-text-muted);
+    margin-bottom: 32px;
+  }
+
+  .included-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    text-align: center;
+  }
+
+  .included-icon {
+    font-size: 32px;
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .included-item h5 {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .included-item p {
+    font-size: 14px;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 1024px) {
+    .packages-grid {
+      grid-template-columns: 1fr;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .packages {
+      padding: 80px 0;
+    }
+
+    .cta-box {
+      padding: 32px 24px;
+    }
+
+    .included-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+</style>

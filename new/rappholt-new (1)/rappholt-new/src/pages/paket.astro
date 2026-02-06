@@ -1,0 +1,446 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const packages = [
+  {
+    name: "Halvdag",
+    description: "4-5 timmar på plats",
+    features: [
+      "Perfekt för vigsel + mingel",
+      "En färdig film (ca 4-6 min)",
+      "Drönare (om vädret tillåter)",
+      "Filmat i 6K RAW",
+      "Leverans inom 5 dagar",
+      "Musik ingår"
+    ]
+  },
+  {
+    name: "Heldag",
+    description: "10-12 timmar på plats",
+    features: [
+      "Från förberedelser till fest",
+      "En färdig film (ca 4-6 min)",
+      "Drönare (om vädret tillåter)",
+      "Filmat i 6K RAW",
+      "Leverans inom 5 dagar",
+      "Musik ingår"
+    ],
+    featured: true
+  },
+  {
+    name: "Destination",
+    description: "Bröllop på annan ort",
+    features: [
+      "Sverige eller utomlands",
+      "En färdig film (ca 4-6 min)",
+      "Drönare (om vädret tillåter)",
+      "Filmat i 6K RAW",
+      "Leverans inom 5 dagar",
+      "Resa & boende tillkommer"
+    ]
+  }
+];
+
+const faqs = [
+  {
+    question: "Varför visar ni inte priser?",
+    answer: "Varje bröllop är unikt. Slutpriset beror på hur lång dag ni planerar, om ni vill ha drönare, hur långt jag behöver resa, och era specifika önskemål. Jag ger er alltid ett tydligt prisförslag innan ni bestämmer er."
+  },
+  {
+    question: "Hur snabbt levererar ni?",
+    answer: "Ni får er färdiga film inom 5 dagar efter bröllopet. De flesta videografer levererar efter 8-12 veckor – jag vet hur jobbigt det är att vänta, så jag prioriterar snabb leverans."
+  },
+  {
+    question: "Vad betyder 6K RAW?",
+    answer: "6K RAW är samma kvalitet som används i Hollywood-produktioner. Det ger enormt utrymme för färggradering och betyder att er film är framtidssäker – ni kan titta på den i 4K, 8K eller vad framtiden än för med sig."
+  },
+  {
+    question: "Filmar ni utanför Skåne?",
+    answer: "Absolut! Jag filmar över hela Sverige och Europa. Kontakta mig så diskuterar vi upplägget för just ert bröllop."
+  },
+  {
+    question: "Hur bokar vi?",
+    answer: "Börja med att skicka en förfrågan via kontaktformuläret eller ring mig. Vi bokar ett gratis videosamtal där vi pratar om ert bröllop, era önskemål och budget. Om allt känns rätt skickar jag ett kontrakt och ni betalar en deposition för att säkra datumet."
+  }
+];
+---
+
+<Layout title="Paket & Priser | Bröllopsvideo Malmö & Skåne | Rappholt Photo">
+  <Nav />
+  
+  <main class="packages-page">
+    <section class="page-hero">
+      <div class="container">
+        <p class="section-label">Paket</p>
+        <h1 class="page-title">Tre sätt att dokumentera ert bröllop</h1>
+        <p class="page-description">
+          Varje bröllop är unikt. Jag skräddarsyr alltid paketen efter era önskemål, datum och budget.
+        </p>
+      </div>
+    </section>
+
+    <section class="packages-section">
+      <div class="container">
+        <div class="packages-grid">
+          {packages.map((pkg) => (
+            <div class={`package-card ${pkg.featured ? 'featured' : ''}`}>
+              {pkg.featured && <span class="featured-badge">Populärast</span>}
+              <h3 class="package-name">{pkg.name}</h3>
+              <p class="package-description">{pkg.description}</p>
+              <ul class="package-features">
+                {pkg.features.map((feature) => (
+                  <li>{feature}</li>
+                ))}
+              </ul>
+              <a href="/kontakt" class="package-cta">Få prisförslag</a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="extra-section">
+      <div class="container">
+        <div class="extra-box">
+          <h2>Vill ni ha mer?</h2>
+          <p>Längre film, separata tal, full vigsel – det går att lösa. Vi diskuterar vad som passar er.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <h2>Få ett prisförslag inom 24 timmar</h2>
+          <p>Boka ett gratis 15-minuters samtal där vi pratar om ert bröllop, era önskemål och budget. Inga förpliktelser.</p>
+          <div class="cta-buttons">
+            <a href="/kontakt" class="btn btn-primary">Boka gratis samtal</a>
+            <a href="tel:+46708588963" class="btn btn-secondary">Ring 070-858 89 63</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <div class="container">
+        <h2 class="faq-title">Vanliga frågor</h2>
+        <div class="faq-list">
+          {faqs.map((faq, index) => (
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span>{faq.question}</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>{faq.answer}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+      const item = button.parentElement;
+      const isOpen = item?.classList.contains('open');
+      
+      // Close all items
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      
+      // Open clicked item if it wasn't open
+      if (!isOpen && item) {
+        item.classList.add('open');
+      }
+    });
+  });
+</script>
+
+<style>
+  .packages-page {
+    padding-top: 100px;
+  }
+
+  .page-hero {
+    padding: 80px 0;
+    text-align: center;
+  }
+
+  .section-label {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 16px;
+  }
+
+  .page-title {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+
+  .page-description {
+    font-size: 18px;
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .packages-section {
+    padding: 0 0 80px;
+  }
+
+  .packages-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .package-card {
+    position: relative;
+    padding: 40px 32px;
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .package-card.featured {
+    border-color: var(--color-accent);
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 16px;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 20px;
+  }
+
+  .package-name {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+
+  .package-description {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    margin-bottom: 24px;
+  }
+
+  .package-features {
+    list-style: none;
+    flex: 1;
+    margin-bottom: 24px;
+  }
+
+  .package-features li {
+    position: relative;
+    padding-left: 24px;
+    padding-bottom: 12px;
+    font-size: 15px;
+    color: var(--color-text-muted);
+  }
+
+  .package-features li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+  }
+
+  .package-cta {
+    display: block;
+    text-align: center;
+    padding: 16px;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+  }
+
+  .package-cta:hover {
+    background: var(--color-text);
+    color: var(--color-bg);
+    border-color: var(--color-text);
+  }
+
+  .extra-section {
+    padding: 80px 0;
+    background: var(--color-bg-elevated);
+  }
+
+  .extra-box {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .extra-box h2 {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .extra-box p {
+    color: var(--color-text-muted);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .cta-section {
+    padding: 80px 0;
+  }
+
+  .cta-box {
+    text-align: center;
+    padding: 60px;
+    background: var(--color-bg-elevated);
+    border-radius: 8px;
+  }
+
+  .cta-box h2 {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .cta-box p {
+    color: var(--color-text-muted);
+    margin-bottom: 24px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 16px 32px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--color-text);
+    color: var(--color-bg);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+  }
+
+  .faq-section {
+    padding: 0 0 120px;
+  }
+
+  .faq-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 48px;
+  }
+
+  .faq-list {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    background: none;
+    border: none;
+    color: var(--color-text);
+    font-size: 18px;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    font-family: var(--font-body);
+  }
+
+  .faq-icon {
+    font-size: 24px;
+    color: var(--color-text-muted);
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item.open .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .faq-item.open .faq-answer {
+    max-height: 300px;
+  }
+
+  .faq-answer p {
+    padding-bottom: 24px;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 1024px) {
+    .packages-grid {
+      grid-template-columns: 1fr;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .included-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .included-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-box {
+      padding: 40px 24px;
+    }
+  }
+</style>

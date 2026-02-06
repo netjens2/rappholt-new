@@ -1,0 +1,273 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+export function getStaticPaths() {
+  const videos = [
+    {
+      slug: "showreel-2025",
+      youtubeId: "7_cPxa_VrUA",
+      title: "Showreel 2025",
+      description: "Highlights från bröllopssäsongen 2025. En samling av de vackraste ögonblicken från bröllop i Malmö, Österlen och resten av Skåne.",
+      location: "Skåne",
+      type: "Highlight Reel"
+    },
+    {
+      slug: "tapomita-maximillian",
+      youtubeId: "6XhBUA2cDzM",
+      title: "Tapomita & Maximillian",
+      description: "Ett vackert sommarbröllop med ceremoni och fest. Filmat i 6K RAW med professionell färggradering.",
+      location: "Skåne",
+      type: "Bröllopsfilm"
+    },
+    {
+      slug: "johanna-2025",
+      youtubeId: "gZQ1a2vhm-o",
+      title: "Johanna 2025",
+      description: "En intim och personlig bröllopsfilm som fångar känslan av dagen.",
+      location: "Skåne",
+      type: "Bröllopsfilm"
+    }
+  ];
+
+  return videos.map((video) => ({
+    params: { slug: video.slug },
+    props: { video }
+  }));
+}
+
+const { video } = Astro.props;
+---
+
+<Layout title={`${video.title} | Bröllopsfilm | Rappholt Photo`}>
+  <Nav />
+  
+  <main class="film-page">
+    <section class="film-hero">
+      <div class="container">
+        <a href="/portfolio" class="back-link">← Tillbaka till portfolio</a>
+        <h1 class="film-title">{video.title}</h1>
+        <div class="film-meta">
+          <span>{video.type}</span>
+          <span class="divider">·</span>
+          <span>{video.location}</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="video-player">
+      <div class="container">
+        <div class="video-wrapper">
+          <iframe
+            src={`https://www.youtube.com/embed/${video.youtubeId}?rel=0&modestbranding=1`}
+            title={video.title}
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="film-details">
+      <div class="container">
+        <div class="details-grid">
+          <div class="description">
+            <h2>Om filmen</h2>
+            <p>{video.description}</p>
+          </div>
+          <div class="specs">
+            <h3>Tekniska detaljer</h3>
+            <ul>
+              <li><strong>Upplösning:</strong> 6K RAW</li>
+              <li><strong>Kamera:</strong> Panasonic S1H</li>
+              <li><strong>Färggradering:</strong> DaVinci Resolve</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <h2>Vill du ha en liknande film?</h2>
+          <p>Jag filmar bröllop i hela Skåne och levererar på 5 dagar.</p>
+          <div class="cta-buttons">
+            <a href="/kontakt" class="btn btn-primary">Boka gratis samtal</a>
+            <a href="/paket" class="btn btn-secondary">Se paket</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .film-page {
+    padding-top: 100px;
+  }
+
+  .film-hero {
+    padding: 60px 0 40px;
+  }
+
+  .back-link {
+    display: inline-block;
+    font-size: 14px;
+    color: var(--color-text-muted);
+    margin-bottom: 24px;
+    transition: color 0.2s ease;
+  }
+
+  .back-link:hover {
+    color: var(--color-text);
+  }
+
+  .film-title {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+
+  .film-meta {
+    font-size: 16px;
+    color: var(--color-text-muted);
+  }
+
+  .film-meta .divider {
+    margin: 0 12px;
+  }
+
+  .video-player {
+    padding-bottom: 60px;
+  }
+
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 */
+    background: var(--color-bg-elevated);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .film-details {
+    padding: 60px 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .details-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+  }
+
+  .description h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .description p {
+    font-size: 18px;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+  }
+
+  .specs h3 {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+    color: var(--color-text-muted);
+  }
+
+  .specs ul {
+    list-style: none;
+  }
+
+  .specs li {
+    padding: 12px 0;
+    font-size: 14px;
+    color: var(--color-text-muted);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .specs strong {
+    color: var(--color-text);
+  }
+
+  .cta-section {
+    padding: 60px 0 120px;
+  }
+
+  .cta-box {
+    text-align: center;
+    padding: 60px;
+    background: var(--color-bg-elevated);
+    border-radius: 8px;
+  }
+
+  .cta-box h2 {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .cta-box p {
+    color: var(--color-text-muted);
+    margin-bottom: 24px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 16px 32px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--color-text);
+    color: var(--color-bg);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 768px) {
+    .details-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .cta-box {
+      padding: 40px 24px;
+    }
+  }
+</style>

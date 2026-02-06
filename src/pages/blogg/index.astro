@@ -1,0 +1,207 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const posts = [
+  {
+    slug: "vad-kostar-brollopsvideo-skane",
+    title: "Vad kostar bröllopsvideo i Skåne 2025?",
+    excerpt: "En ärlig guide till priser för bröllopsvideografi i Malmö, Lund, Helsingborg och resten av Skåne.",
+    date: "2025-01-15",
+    readTime: "5 min"
+  },
+  {
+    slug: "basta-brollopslokalerna-malmo-for-film",
+    title: "Bästa bröllopslokaler i Malmö för film",
+    excerpt: "Vilka lokaler ger de vackraste bilderna? Här är mina favoriter som bröllopsvideograf.",
+    date: "2025-01-10",
+    readTime: "4 min"
+  },
+  {
+    slug: "6k-raw-vs-4k-brollopsvideo",
+    title: "6K RAW vs 4K – Varför det spelar roll för din bröllopsfilm",
+    excerpt: "Tekniken bakom Netflix-kvalitet och varför det gör skillnad för din bröllopsfilm.",
+    date: "2025-01-05",
+    readTime: "6 min"
+  }
+];
+---
+
+<Layout title="Blogg | Tips om bröllopsvideo | Rappholt Photo">
+  <Nav />
+  
+  <main class="blog-page">
+    <section class="page-hero">
+      <div class="container">
+        <p class="section-label">Blogg</p>
+        <h1 class="page-title">Tips & inspiration</h1>
+        <p class="page-description">
+          Artiklar om bröllopsvideo, priser, utrustning och de bästa lokalerna i Skåne.
+        </p>
+      </div>
+    </section>
+
+    <section class="posts-section">
+      <div class="container">
+        <div class="posts-grid">
+          {posts.map((post) => (
+            <a href={`/blogg/${post.slug}`} class="post-card">
+              <div class="post-meta">
+                <span class="post-date">{new Date(post.date).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                <span class="post-read-time">{post.readTime} läsning</span>
+              </div>
+              <h2 class="post-title">{post.title}</h2>
+              <p class="post-excerpt">{post.excerpt}</p>
+              <span class="post-link">Läs mer →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <h2>Har du frågor om bröllopsvideo?</h2>
+          <p>Boka ett gratis samtal så svarar jag på alla dina funderingar.</p>
+          <a href="/kontakt" class="btn btn-primary">Kontakta mig</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .blog-page {
+    padding-top: 100px;
+  }
+
+  .page-hero {
+    padding: 80px 0;
+    text-align: center;
+  }
+
+  .section-label {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 16px;
+  }
+
+  .page-title {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+
+  .page-description {
+    font-size: 18px;
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .posts-section {
+    padding: 0 0 80px;
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .post-card {
+    display: block;
+    padding: 40px;
+    background: var(--color-bg-elevated);
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  .post-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .post-meta {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .post-date,
+  .post-read-time {
+    font-size: 14px;
+    color: var(--color-text-muted);
+  }
+
+  .post-title {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .post-excerpt {
+    font-size: 16px;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .post-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-accent);
+  }
+
+  .cta-section {
+    padding: 0 0 120px;
+  }
+
+  .cta-box {
+    text-align: center;
+    padding: 60px;
+    background: var(--color-bg-elevated);
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cta-box h2 {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .cta-box p {
+    color: var(--color-text-muted);
+    margin-bottom: 24px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 16px 32px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--color-text);
+    color: var(--color-bg);
+  }
+
+  .btn-primary:hover {
+    opacity: 0.9;
+  }
+</style>

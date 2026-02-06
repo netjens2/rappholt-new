@@ -1,0 +1,273 @@
+---
+
+---
+
+<section id="om-mig" class="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image">
+        <img src="/portrait.png" alt="Jens Rappholt – bröllopsvideograf i Skåne" />
+      </div>
+      
+      <div class="about-content">
+        <p class="section-label">Om mig</p>
+        <h2 class="about-title">Jens Rappholt</h2>
+        <p class="about-subtitle">Bröllopsvideograf i Malmö & Skåne</p>
+        
+        <div class="about-text">
+          <p>
+            Jag har jobbat med bild i över 15 år. Började som modefotograf, jobbade sedan som fastighetsfotograf åt mäklare, och gjorde företagsporträtt och produktfoto. Sålde även stockfoton via Shutterstock.
+          </p>
+          <p>
+            Men till slut fann jag mer utmaning i att filma än att fotografera, så jag valde filmspåret. Rörlig bild ger så mycket mer – och redigeringen är en kreativ del av processen som jag älskar.
+          </p>
+          <p>
+            Till vardags jobbar jag med IT och nätverk. Bröllopsfilm är mitt kreativa utlopp.
+          </p>
+        </div>
+
+        <div class="about-stats">
+          <div class="stat">
+            <span class="stat-value">5</span>
+            <span class="stat-label">dagars leverans</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">6K</span>
+            <span class="stat-label">RAW kvalitet</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">15+</span>
+            <span class="stat-label">år med kamera</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="equipment">
+      <button class="equipment-toggle" id="equipment-toggle">
+        <span>Visa utrustning</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+      </button>
+      
+      <div class="equipment-details" id="equipment-details">
+        <div class="equipment-image">
+          <img src="/Rig.png" alt="Professionell filmrigg" />
+        </div>
+        <div class="equipment-specs">
+          <h4>Utrustning byggd för film</h4>
+          <p class="equipment-intro">Jag filmar med utrustning byggd för rörlig bild, inte stillbilder. Det är skillnaden mellan en videograf och en fotograf med kamera.</p>
+          <ul>
+            <li><strong>Kamera:</strong> Panasonic S1H – fullformat cinema-kamera</li>
+            <li><strong>Stabilisering:</strong> DJI RS3 Pro i Tilta-rigg + Easyrig Vario 5</li>
+            <li><strong>Inspelning:</strong> Blackmagic Video Assist 12G – 6K RAW</li>
+            <li><strong>Fokus:</strong> DJI LiDAR</li>
+            <li><strong>Ljud:</strong> Mikrofon på rigg + 2 trådlösa mikrofoner i mixen</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const toggle = document.getElementById('equipment-toggle');
+  const details = document.getElementById('equipment-details');
+  
+  toggle?.addEventListener('click', () => {
+    details?.classList.toggle('open');
+    toggle.classList.toggle('open');
+  });
+</script>
+
+<style>
+  .about {
+    padding: 120px 0;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+    margin-bottom: 80px;
+  }
+
+  .about-image {
+    position: relative;
+  }
+
+  .about-image img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .section-label {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 16px;
+  }
+
+  .about-title {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+
+  .about-subtitle {
+    font-size: 18px;
+    color: var(--color-text-muted);
+    margin-bottom: 32px;
+  }
+
+  .about-text p {
+    color: var(--color-text-muted);
+    margin-bottom: 16px;
+    line-height: 1.8;
+  }
+
+  .about-text strong {
+    color: var(--color-text);
+  }
+
+  .about-stats {
+    display: flex;
+    gap: 48px;
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-value {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 500;
+    color: var(--color-accent);
+  }
+
+  .stat-label {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .equipment {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .equipment-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 16px;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    color: var(--color-text-muted);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .equipment-toggle:hover {
+    border-color: var(--color-text-subtle);
+    color: var(--color-text);
+  }
+
+  .equipment-toggle svg {
+    transition: transform 0.3s ease;
+  }
+
+  .equipment-toggle.open svg {
+    transform: rotate(180deg);
+  }
+
+  .equipment-details {
+    display: none;
+    margin-top: 24px;
+    padding: 32px;
+    background: var(--color-bg-elevated);
+    border-radius: 8px;
+  }
+
+  .equipment-details.open {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .equipment-image img {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .equipment-specs h4 {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .equipment-specs ul {
+    list-style: none;
+  }
+
+  .equipment-specs li {
+    padding: 8px 0;
+    font-size: 14px;
+    color: var(--color-text-muted);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .equipment-specs li:last-child {
+    border-bottom: none;
+  }
+
+  .equipment-specs strong {
+    color: var(--color-text);
+  }
+
+  @media (max-width: 1024px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    .about-image {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .about {
+      padding: 80px 0;
+    }
+
+    .about-stats {
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+
+    .equipment-details.open {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

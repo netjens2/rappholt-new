@@ -1,0 +1,117 @@
+---
+
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="/logo.png" alt="Rappholt Photo" class="footer-logo" />
+        <p>Professionell bröllopsvideograf i Malmö & Skåne. Tidlösa bröllopsvideor i 6K RAW kvalitet.</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Snabblänkar</h4>
+        <ul>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#paket">Paket</a></li>
+          <li><a href="#om-mig">Om Mig</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="tel:+46708588963">070-858 89 63</a></li>
+          <li><a href="mailto:jensphoto@gmail.com">jensphoto@gmail.com</a></li>
+          <li><a href="https://www.instagram.com/rappholtphoto/" target="_blank" rel="noopener noreferrer">@rappholtphoto</a></li>
+          <li>Malmö, Skåne</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {new Date().getFullYear()} Rappholt Photo. Alla rättigheter förbehållna.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 80px 0 40px;
+    background: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+  }
+
+  .footer-logo {
+    height: 32px;
+    width: auto;
+    margin-bottom: 16px;
+  }
+
+  .footer-brand p {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    max-width: 300px;
+    line-height: 1.7;
+  }
+
+  .footer-links h4,
+  .footer-contact h4 {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+  }
+
+  .footer-links ul,
+  .footer-contact ul {
+    list-style: none;
+  }
+
+  .footer-links li,
+  .footer-contact li {
+    margin-bottom: 12px;
+  }
+
+  .footer-links a,
+  .footer-contact a,
+  .footer-contact li {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    transition: color 0.2s ease;
+  }
+
+  .footer-links a:hover,
+  .footer-contact a:hover {
+    color: var(--color-text);
+  }
+
+  .footer-bottom {
+    padding-top: 40px;
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+  }
+
+  .footer-bottom p {
+    font-size: 13px;
+    color: var(--color-text-subtle);
+  }
+
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+</style>

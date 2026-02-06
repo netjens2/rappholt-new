@@ -1,0 +1,260 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const post = {
+  title: "Vad kostar bröllopsvideo i Skåne 2025?",
+  description: "En ärlig guide till priser för bröllopsvideografi i Malmö, Lund, Helsingborg och resten av Skåne. Vad påverkar priset och vad får du för pengarna?",
+  date: "2025-01-15",
+  readTime: "5 min"
+};
+---
+
+<Layout title={`${post.title} | Rappholt Photo`}>
+  <Nav />
+  
+  <main class="blog-post">
+    <article>
+      <header class="post-header">
+        <div class="container">
+          <a href="/blogg" class="back-link">← Tillbaka till bloggen</a>
+          <h1 class="post-title">{post.title}</h1>
+          <div class="post-meta">
+            <span>{new Date(post.date).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+            <span class="divider">·</span>
+            <span>{post.readTime} läsning</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="post-content">
+        <div class="container container-narrow">
+          <p class="intro">
+            En av de vanligaste frågorna jag får är "vad kostar bröllopsvideo?". Det korta svaret är: det beror på. Men här ska jag ge dig en ärlig guide till vad du kan förvänta dig i Skåne 2025.
+          </p>
+
+          <h2>Prisspannet för bröllopsvideo i Skåne</h2>
+          <p>
+            I Skåne ligger priserna för professionell bröllopsvideo vanligtvis mellan <strong>10 000 och 35 000 SEK</strong>. Det är ett brett spann, och skillnaden beror på flera faktorer:
+          </p>
+          <ul>
+            <li>Hur lång dag som filmas (halvdag vs heldag)</li>
+            <li>Vilken utrustning som används</li>
+            <li>Videografens erfarenhet och portfolio</li>
+            <li>Vad som ingår (highlightfilm, full vigsel, drönare, etc.)</li>
+            <li>Leveranstid</li>
+          </ul>
+
+          <h2>Vad påverkar priset mest?</h2>
+          
+          <h3>1. Längd på dagen</h3>
+          <p>
+            En halvdag (4-5 timmar) kostar naturligtvis mindre än en heldag (10-12 timmar). Om ni bara vill ha vigseln och lite mingel filmad kan halvdag vara perfekt. Men om ni vill fånga förberedelserna, talen och festen rekommenderar jag heldag.
+          </p>
+
+          <h3>2. Utrustning och kvalitet</h3>
+          <p>
+            Det finns en enorm skillnad mellan någon som filmar med en spegellös kamera på stativ och någon som använder professionell cinema-utrustning. Jag filmar i <strong>6K RAW</strong> med samma typ av utrustning som används i reklamfilm – det syns i slutresultatet.
+          </p>
+
+          <h3>3. Leveranstid</h3>
+          <p>
+            De flesta videografer levererar efter 8-12 veckor. Jag levererar inom <strong>5 dagar</strong>. Det kostar mer i arbetstid, men ni slipper vänta i månader på att få se er film.
+          </p>
+
+          <h2>Vad får ni för pengarna?</h2>
+          <p>
+            En bra bröllopsvideo är inte bara dokumentation – det är ett sätt att återuppleva dagen. Lukterna, skratten, tårarna, dansen. En välgjord film tar er tillbaka dit varje gång ni tittar på den.
+          </p>
+          <p>
+            Här är vad som vanligtvis ingår i olika prisklasser:
+          </p>
+
+          <h3>Budget (10 000 - 15 000 SEK)</h3>
+          <ul>
+            <li>Halvdag filmning</li>
+            <li>3-4 minuters highlightfilm</li>
+            <li>Enklare utrustning</li>
+            <li>Längre leveranstid</li>
+          </ul>
+
+          <h3>Mellan (15 000 - 25 000 SEK)</h3>
+          <ul>
+            <li>Heldag filmning</li>
+            <li>5-8 minuters highlightfilm</li>
+            <li>Full vigsel som separat film</li>
+            <li>Professionell utrustning</li>
+            <li>Drönare</li>
+          </ul>
+
+          <h3>Premium (25 000+ SEK)</h3>
+          <ul>
+            <li>Heldag med cinema-utrustning</li>
+            <li>6K RAW-inspelning</li>
+            <li>Snabb leverans</li>
+            <li>Dokumentär av hela dagen</li>
+            <li>Flera kameravinklar</li>
+          </ul>
+
+          <h2>Mitt råd</h2>
+          <p>
+            Välj inte enbart på pris. Titta på videografens portfolio och känn efter om stilen passar er. En billigare video som ni aldrig tittar på är ingen bra investering. En dyrare video som får er att gråta av lycka varje gång – det är ovärderligt.
+          </p>
+          <p>
+            Har ni frågor om priser för ert bröllop? <a href="/kontakt">Kontakta mig</a> så ger jag er ett prisförslag inom 24 timmar.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <h2>Vill du veta vad det kostar för ert bröllop?</h2>
+          <p>Jag ger er ett prisförslag inom 24 timmar. Inga förpliktelser.</p>
+          <a href="/kontakt" class="btn btn-primary">Få prisförslag</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .blog-post {
+    padding-top: 100px;
+  }
+
+  .post-header {
+    padding: 60px 0 40px;
+  }
+
+  .back-link {
+    display: inline-block;
+    font-size: 14px;
+    color: var(--color-text-muted);
+    margin-bottom: 24px;
+    transition: color 0.2s ease;
+  }
+
+  .back-link:hover {
+    color: var(--color-text);
+  }
+
+  .post-title {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 400;
+    margin-bottom: 16px;
+    max-width: 800px;
+  }
+
+  .post-meta {
+    font-size: 16px;
+    color: var(--color-text-muted);
+  }
+
+  .post-meta .divider {
+    margin: 0 12px;
+  }
+
+  .post-content {
+    padding: 40px 0 80px;
+  }
+
+  .container-narrow {
+    max-width: 700px;
+  }
+
+  .intro {
+    font-size: 20px;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .post-content h2 {
+    font-size: 28px;
+    margin-top: 48px;
+    margin-bottom: 16px;
+  }
+
+  .post-content h3 {
+    font-size: 20px;
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+
+  .post-content p {
+    font-size: 18px;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .post-content ul {
+    margin: 16px 0 24px 24px;
+  }
+
+  .post-content li {
+    font-size: 17px;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+
+  .post-content strong {
+    color: var(--color-text);
+  }
+
+  .post-content a {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .cta-section {
+    padding: 0 0 120px;
+  }
+
+  .cta-box {
+    text-align: center;
+    padding: 60px;
+    background: var(--color-bg-elevated);
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cta-box h2 {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .cta-box p {
+    color: var(--color-text-muted);
+    margin-bottom: 24px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 16px 32px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--color-text);
+    color: var(--color-bg);
+  }
+
+  .btn-primary:hover {
+    opacity: 0.9;
+  }
+</style>
