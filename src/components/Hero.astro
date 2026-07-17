@@ -1,5 +1,5 @@
 ---
-
+// src/components/Hero.astro
 ---
 
 <section class="hero">
@@ -18,18 +18,26 @@
   </div>
 
   <div class="hero-content container">
-    <p class="hero-location">Malmö & Skåne</p>
-    <h1 class="hero-title">Bröllopsvideograf</h1>
-    <p class="hero-subtitle">Tidlösa filmer i 6K RAW · Leverans på 5 dagar</p>
+    <div class="fade-in-up delay-1">
+      <p class="hero-location">Svedala, Skåne & Destination</p>
+    </div>
     
-    <div class="hero-ctas">
-      <a href="#portfolio" class="btn btn-primary">Se portfolio</a>
-      <a href="#kontakt" class="btn btn-secondary">Kontakta mig</a>
+    <div class="fade-in-up delay-2">
+      <h1 class="hero-title">Cinematisk Bröllopsfilm</h1>
+    </div>
+    
+    <div class="fade-in-up delay-3">
+      <p class="hero-subtitle">Vi fångar era mest äkta ögonblick i 6K RAW. Färdig film levererad på 5 dagar.</p>
+    </div>
+    
+    <div class="hero-ctas fade-in-up delay-4">
+      <a href="/portfolio" class="btn btn-primary">Se våra filmer</a>
+      <a href="/kontakt" class="btn btn-secondary">Är mitt datum ledigt?</a>
     </div>
   </div>
 
-  <div class="scroll-indicator">
-    <span>Scrolla</span>
+  <div class="scroll-indicator fade-in-up delay-5">
+    <span>Upptäck mer</span>
     <div class="scroll-line"></div>
   </div>
 </section>
@@ -55,16 +63,18 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transform: scale(1.02); /* Minimal inzoomning för att undvika fula renderingar i kanterna */
   }
 
+  /* Äkta lins-vignett för premiumkänsla */
   .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(10, 10, 10, 0.3) 0%,
-      rgba(10, 10, 10, 0.5) 50%,
-      rgba(10, 10, 10, 0.9) 100%
+    background: radial-gradient(
+      circle at center, 
+      rgba(0,0,0,0.2) 0%, 
+      rgba(0,0,0,0.5) 60%, 
+      rgba(0,0,0,0.85) 100%
     );
   }
 
@@ -72,66 +82,83 @@
     position: relative;
     z-index: 1;
     text-align: center;
+    max-width: 900px;
+    padding: 0 20px;
   }
 
   .hero-location {
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 0.2em;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--color-accent);
-    margin-bottom: 16px;
+    color: var(--color-accent, #c9a962);
+    margin-bottom: 24px;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
   }
 
   .hero-title {
-    font-size: clamp(48px, 10vw, 120px);
+    font-size: clamp(40px, 8vw, 96px);
+    font-family: var(--font-display, serif);
     font-weight: 400;
     letter-spacing: -0.02em;
-    margin-bottom: 16px;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    color: #ffffff;
+    text-shadow: 0px 4px 24px rgba(0,0,0,0.6);
   }
 
   .hero-subtitle {
-    font-size: 18px;
-    color: var(--color-text-muted);
-    margin-bottom: 40px;
+    font-size: clamp(16px, 2vw, 20px);
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 600px;
+    margin: 0 auto 48px auto;
+    line-height: 1.6;
+    text-shadow: 0px 2px 12px rgba(0,0,0,0.8);
   }
 
   .hero-ctas {
     display: flex;
-    gap: 16px;
+    gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
   }
 
   .btn {
     display: inline-block;
-    padding: 16px 32px;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.05em;
+    padding: 18px 36px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    border-radius: 4px;
-    transition: all 0.2s ease;
+    border-radius: 2px; /* Skarpare kanter för en lyxigare look */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(4px); /* Frostad glaseffekt bakom knappen */
+    text-decoration: none;
   }
 
   .btn-primary {
-    background: var(--color-text);
-    color: var(--color-bg);
+    background: var(--color-accent, #c9a962);
+    color: #000000;
+    border: 1px solid var(--color-accent, #c9a962);
   }
 
   .btn-primary:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
+    background: #ffffff;
+    border-color: #ffffff;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
   }
 
   .btn-secondary {
-    background: transparent;
-    color: var(--color-text);
-    border: 1px solid var(--color-border);
+    background: rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
   }
 
   .btn-secondary:hover {
-    border-color: var(--color-text);
+    border-color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-4px);
   }
 
   .scroll-indicator {
@@ -142,32 +169,51 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
-    color: var(--color-text-muted);
-    font-size: 12px;
-    letter-spacing: 0.1em;
+    gap: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 11px;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
   }
 
   .scroll-line {
     width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, var(--color-text-muted), transparent);
-    animation: scroll-bounce 2s ease-in-out infinite;
+    height: 50px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.7), transparent);
+    animation: scroll-flow 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    transform-origin: top;
   }
 
-  @keyframes scroll-bounce {
-    0%, 100% { transform: translateY(0); opacity: 1; }
-    50% { transform: translateY(10px); opacity: 0.5; }
+  /* --- ANIMATIONER --- */
+  @keyframes scroll-flow {
+    0% { transform: scaleY(0); opacity: 0; }
+    50% { transform: scaleY(1); opacity: 1; }
+    100% { transform: scaleY(1) translateY(100%); opacity: 0; }
+  }
+
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+
+  .delay-1 { animation-delay: 0.2s; }
+  .delay-2 { animation-delay: 0.4s; }
+  .delay-3 { animation-delay: 0.6s; }
+  .delay-4 { animation-delay: 0.8s; }
+  .delay-5 { animation-delay: 1.4s; }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @media (max-width: 768px) {
-    .hero-subtitle {
-      font-size: 16px;
-    }
-
-    .scroll-indicator {
-      display: none;
-    }
+    .hero-title { font-size: 44px; }
+    .hero-ctas { flex-direction: column; width: 100%; gap: 12px; }
+    .btn { width: 100%; }
+    .scroll-indicator { display: none; }
   }
 </style>

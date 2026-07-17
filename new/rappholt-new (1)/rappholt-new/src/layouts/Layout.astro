@@ -29,24 +29,172 @@ const { title, description = "Professionell bröllopsvideograf i Malmö & Skåne
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Structured Data -->
+  <!-- Structured Data: LocalBusiness -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
+    "@type": "LocalBusiness",
+    "@id": "https://www.rappholtphoto.se/#business",
     "name": "Rappholt Photo",
-    "description": "Professionell bröllopsvideograf i Malmö och Skåne. Leverans på 5 dagar.",
+    "alternateName": "Rappholt Photo – Bröllopsvideograf",
+    "description": "Professionell bröllopsvideograf i Malmö och Skåne. Cinematiska bröllopsfilmer i 6K RAW med leverans på 5 dagar. Drönare, professionellt ljud och färggrading i DaVinci Resolve.",
     "url": "https://www.rappholtphoto.se",
     "telephone": "+46708588963",
     "email": "jensphoto@gmail.com",
+    "image": "https://www.rappholtphoto.se/portrait.png",
+    "logo": "https://www.rappholtphoto.se/logo.png",
+    "founder": {
+      "@type": "Person",
+      "name": "Jens Rappholt",
+      "jobTitle": "Bröllopsvideograf",
+      "description": "Videograf med över 15 års erfarenhet av professionell bild och film, baserad i Skåne."
+    },
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Malmö",
+      "addressLocality": "Svedala",
       "addressRegion": "Skåne",
+      "postalCode": "233 00",
       "addressCountry": "SE"
     },
-    "areaServed": ["Malmö", "Skåne", "Österlen", "Helsingborg", "Lund"],
-    "priceRange": "14000-25000 SEK"
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 55.5064,
+      "longitude": 13.2334
+    },
+    "areaServed": [
+      {"@type": "City", "name": "Malmö"},
+      {"@type": "City", "name": "Lund"},
+      {"@type": "City", "name": "Helsingborg"},
+      {"@type": "City", "name": "Ystad"},
+      {"@type": "City", "name": "Trelleborg"},
+      {"@type": "AdministrativeArea", "name": "Skåne"},
+      {"@type": "AdministrativeArea", "name": "Österlen"},
+      {"@type": "Country", "name": "Sverige"}
+    ],
+    "priceRange": "14 000–25 000 SEK",
+    "currenciesAccepted": "SEK",
+    "paymentAccepted": "Faktura, Swish, Banköverföring",
+    "knowsLanguage": ["sv", "en"],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Bröllopsfilmspaket",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "name": "Halvdag",
+          "description": "4–5 timmar på plats. Perfekt för vigsel och mingel. Färdig film ca 4–6 min, drönare, 6K RAW, leverans inom 5 dagar.",
+          "priceCurrency": "SEK"
+        },
+        {
+          "@type": "Offer",
+          "name": "Heldag",
+          "description": "10–12 timmar på plats. Från förberedelser till fest. Färdig film ca 4–6 min, drönare, 6K RAW, leverans inom 5 dagar.",
+          "priceCurrency": "SEK"
+        },
+        {
+          "@type": "Offer",
+          "name": "Destination",
+          "description": "Bröllop på annan ort, Sverige eller utomlands. Färdig film ca 4–6 min, drönare, 6K RAW. Resa och boende tillkommer.",
+          "priceCurrency": "SEK"
+        }
+      ]
+    },
+    "sameAs": [
+      "https://www.instagram.com/rappholtphoto/"
+    ]
+  }
+  </script>
+
+  <!-- Structured Data: VideoObject (Showreel) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Rappholt Photo – Showreel 2025",
+    "description": "Cinematiska bröllopsfilmer från Malmö och Skåne. Highlights från säsongen 2025, filmade i 6K RAW.",
+    "thumbnailUrl": "https://img.youtube.com/vi/7_cPxa_VrUA/maxresdefault.jpg",
+    "uploadDate": "2025-01-01",
+    "contentUrl": "https://www.youtube.com/watch?v=7_cPxa_VrUA",
+    "embedUrl": "https://www.youtube.com/embed/7_cPxa_VrUA",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Rappholt Photo",
+      "url": "https://www.rappholtphoto.se"
+    }
+  }
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Vad kostar en bröllopsvideograf i Skåne?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Priset för en bröllopsvideograf i Skåne varierar beroende på paket och omfattning. Rappholt Photo erbjuder paket från cirka 14 000 SEK (halvdag, 4–5 timmar) till 25 000 SEK (heldag, 10–12 timmar). Alla paket inkluderar en färdig cinematisk film på 4–6 minuter, drönare och 6K RAW-kvalitet med leverans inom 5 dagar."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hur lång tid tar det att få bröllopsfilmen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Rappholt Photo levererar den färdiga bröllopsfilmen inom 5 dagar efter bröllopet. Det är en av de snabbaste leveranstiderna i branschen – de flesta videografer behöver 4–8 veckor."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Vad är skillnaden mellan en videograf och en fotograf som filmar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "En dedikerad videograf använder utrustning byggd för rörlig bild: cinema-kamera (Panasonic S1H), gimbal-stabilisering (DJI RS3 Pro), extern inspelning i 6K RAW (Blackmagic Video Assist 12G), professionellt ljud med trådlösa mikrofoner och LiDAR-autofokus. En fotograf som även filmar använder vanligtvis sin stillbildskamera med begränsad stabilisering och ljud, vilket ger en annan kvalitet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Filmar ni med drönare på bröllop?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, drönarfilmning ingår i alla paket om vädret och platsen tillåter det. Drönarbilder ger fantastiska överblicksbilder av bröllopslokalen och omgivningen, särskilt på vackra platser i Skåne som Österlen, Skanör och slott."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kan ni filma bröllop utanför Skåne?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolut! Destinationspaketet täcker bröllop i hela Sverige och utomlands. Resa och boende tillkommer utöver filmkostnaden. Rappholt Photo utgår från Svedala i Skåne men tar uppdrag var som helst."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Vad är 6K RAW och varför spelar det roll?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "6K RAW innebär att filmen spelas in i extremt hög upplösning (6144 × 4096 pixlar) i ett okomprimerat format som bevarar alla bildens detaljer och färginformation. Det ger maximal flexibilitet vid färggrading i DaVinci Resolve och säkerställer att filmen ser tidlös och cinematisk ut – inte som vanlig hemvideo."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hur lång blir bröllopsfilmen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standardfilmen är cirka 4–6 minuter lång – en cinematisk highlight-film som fångar de viktigaste ögonblicken från dagen. Det går att beställa längre filmer, separata tal, full vigsel och andra tillägg."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Behöver vi både fotograf och videograf?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Foto och video kompletterar varandra. Foton fångar enskilda ögonblick medan film fångar rörelse, ljud, tal och känslor. Många brudpar ångrar att de inte hade videograf – men nästan ingen ångrar att de hade en. Vi samarbetar smidigt med er fotograf under hela dagen."
+        }
+      }
+    ]
   }
   </script>
 </head>

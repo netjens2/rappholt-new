@@ -1,0 +1,227 @@
+---
+const faqs = [
+  {
+    question: "Vad kostar en bröllopsvideograf i Skåne?",
+    answer: "Priset varierar beroende på paket och omfattning. Jag erbjuder paket från cirka 14 000 SEK (halvdag, 4–5 timmar) till 25 000 SEK (heldag, 10–12 timmar). Alla paket inkluderar en färdig cinematisk film på 4–6 minuter, drönare och 6K RAW-kvalitet med leverans inom 5 dagar."
+  },
+  {
+    question: "Hur lång tid tar det att få bröllopsfilmen?",
+    answer: "Jag levererar den färdiga filmen inom 5 dagar efter bröllopet. Det är en av de snabbaste leveranstiderna i branschen – de flesta videografer behöver 4–8 veckor. Ni får en professionellt färggradad film i hög upplösning."
+  },
+  {
+    question: "Vad är skillnaden mellan en videograf och en fotograf som filmar?",
+    answer: "En dedikerad videograf använder utrustning byggd för rörlig bild: cinema-kamera (Panasonic S1H), gimbal-stabilisering (DJI RS3 Pro), extern inspelning i 6K RAW (Blackmagic Video Assist 12G), professionellt ljud med trådlösa mikrofoner och LiDAR-autofokus. En fotograf som även filmar använder vanligtvis sin stillbildskamera med begränsad stabilisering och ljud."
+  },
+  {
+    question: "Filmar ni med drönare på bröllop?",
+    answer: "Ja, drönarfilmning ingår i alla paket om vädret och platsen tillåter det. Drönarbilder ger fantastiska överblicksbilder av bröllopslokalen och omgivningen, särskilt på platser i Skåne som Österlen, Skanör och slott."
+  },
+  {
+    question: "Kan ni filma bröllop utanför Skåne?",
+    answer: "Absolut! Destinationspaketet täcker bröllop i hela Sverige och utomlands. Resa och boende tillkommer utöver filmkostnaden. Jag utgår från Svedala i Skåne men tar uppdrag var som helst."
+  },
+  {
+    question: "Vad är 6K RAW och varför spelar det roll?",
+    answer: "6K RAW innebär att filmen spelas in i extremt hög upplösning (6144 × 4096 pixlar) i ett okomprimerat format som bevarar alla detaljer och färginformation. Det ger maximal flexibilitet vid färggrading i DaVinci Resolve och säkerställer att filmen ser tidlös och cinematisk ut."
+  },
+  {
+    question: "Hur lång blir bröllopsfilmen?",
+    answer: "Standardfilmen är cirka 4–6 minuter – en cinematisk highlight-film som fångar de viktigaste ögonblicken. Det går att beställa längre filmer, separata tal, full vigsel och andra tillägg."
+  },
+  {
+    question: "Behöver vi både fotograf och videograf?",
+    answer: "Foto och video kompletterar varandra. Foton fångar enskilda ögonblick medan film fångar rörelse, ljud, tal och känslor. Många brudpar ångrar att de inte hade videograf – men nästan ingen ångrar att de hade en. Jag samarbetar smidigt med er fotograf under hela dagen."
+  }
+];
+---
+
+<section id="faq" class="faq">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Vanliga frågor</p>
+      <h2 class="section-title">Bra att veta</h2>
+      <p class="section-description">
+        Svar på de vanligaste frågorna om bröllopsfilm, priser och hur det fungerar att anlita en videograf.
+      </p>
+    </div>
+
+    <div class="faq-list">
+      {faqs.map((faq, index) => (
+        <div class="faq-item" data-faq-index={index}>
+          <button class="faq-question" aria-expanded="false">
+            <span>{faq.question}</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>{faq.answer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="faq-cta">
+      <p>Har du fler frågor?</p>
+      <a href="#kontakt" class="btn btn-secondary">Kontakta mig</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+      const item = button.parentElement;
+      const isOpen = item?.classList.contains('open');
+      
+      // Close all items
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      document.querySelectorAll('.faq-question').forEach(b => b.setAttribute('aria-expanded', 'false'));
+      
+      // Open clicked item if it was closed
+      if (!isOpen) {
+        item?.classList.add('open');
+        button.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>
+
+<style>
+  .faq {
+    padding: 120px 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .section-label {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+
+  .section-description {
+    font-size: 18px;
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 24px 0;
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 17px;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    gap: 16px;
+  }
+
+  .faq-question:hover {
+    color: var(--color-accent);
+  }
+
+  .faq-question svg {
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    color: var(--color-text-muted);
+  }
+
+  .faq-item.open .faq-question svg {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+  }
+
+  .faq-item.open .faq-answer {
+    max-height: 300px;
+    padding-bottom: 24px;
+  }
+
+  .faq-answer p {
+    color: var(--color-text-muted);
+    font-size: 15px;
+    line-height: 1.8;
+    padding-right: 40px;
+  }
+
+  .faq-cta {
+    text-align: center;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .faq-cta p {
+    color: var(--color-text-muted);
+    font-size: 16px;
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    padding: 14px 28px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    transition: all 0.2s ease;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--color-text);
+  }
+
+  @media (max-width: 640px) {
+    .faq {
+      padding: 80px 0;
+    }
+
+    .faq-question {
+      font-size: 15px;
+      padding: 20px 0;
+    }
+
+    .faq-answer p {
+      padding-right: 0;
+    }
+  }
+</style>
